@@ -1,57 +1,79 @@
-const eventForm = document.getElementById("eventForm");
-const eventTitle = document.getElementById("eventTitle");
-const eventDate = document.getElementById("eventDate");
-const eventCategory = document.getElementById("eventCategory");
-const eventDescription = document.getElementById("eventDescription");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Event Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-const clearAllBtn = document.getElementById("clearAllBtn");
-const addSampleBtn = document.getElementById("addSampleBtn");
-const eventContainer = document.getElementById("eventContainer");
+<div class="container">
 
-let sampleEvent = [
-  {
-    title: "Web dev",
-    date: "4-12-2026",
-    category: "workshop",
-    description: "hasvhuno oadhoo asoikla dfoi",
-  },
-  {
-    title: "Web dev2",
-    date: "5-12-2026",
-    category: "conference",
-    description: "hasvhuno oadshdbf hoo asoikla dfoi",
-  },
-];
+    <header class="dashboard">
+        <h1> Smart Event Dashboard</h1>
+    </header>
 
-//   create event card
-function createEventCard(eventData) {
-  const card = document.createElement("div");
-  card.innerHTML = `
-    <button class=delete-btn>X</button>
-    <h3>${eventData.title}</h3>
-    <div>${eventData.date}</div>
-    <span>${eventData.category}</span>
-    <p>${eventData.description}</p>
-    `;
-  return card;
-}
+    <div class="main-content">
 
-function addEvent(eventData) {
-  const emptyState = document.querySelector(".empty-state");
-  if (emptyState) emptyState.remove();
+        <div class="form-section">
+            <h2>New Event</h2>
 
-  eventContainer.appendChild(createEventCard(eventData));
-}
+            <form id="eventForm">
+                <div class="formgroup">
+                    <label>Event Title</label>
+                    <input type="text" id="title" required>
+                </div>
 
-eventForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const eventData = {
-    title: eventTitle.value,
-    date: eventDate.value,
-    category: eventCategory.value,
-    description: eventDescription.value,
-  };
+                <div class="formgroup">
+                    <label>Event Date</label>
+                    <input type="date" id="eventdate" required>
+                </div>
 
-  addEvent(eventData);
-  eventForm.reset();
-});
+                <div class="formgroup">
+                    <label>Category</label>
+                    <select id="category">
+                        <option>Conference</option>
+                        <option>Workshop</option>
+                        <option>Class</option>
+ 
+                    </select>
+                </div>
+
+                <div class="formgroup">
+                    <label>Description</label>
+                    <textarea id="description" rows="4" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-add">Add Event</button>
+            </form>
+        </div>
+
+        <div class="events-section">
+            <h2>My Events</h2>
+
+            <div class="events-controls">
+                <button id="clearBtn" class="btn-control">Clear All Events</button>
+                <button id="sampleBtn" class="btn-control">Add Sample Events</button>
+            </div>
+
+            <div id="eventsContainer" class="eventscontainer">
+                <p id="emptyMsg" style="text-align:center;color:#777;">
+                    No events yet. Add your first event!
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="demo-section">
+        <h2>DOM Manipulation Demo</h2>
+        <div id="keyDisplay" class="key-display">
+            Press any key to see the difference!
+        </div>
+    </div>
+
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
